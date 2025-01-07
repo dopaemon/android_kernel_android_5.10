@@ -11,6 +11,7 @@ jobs:
         sudo apt update && sudo apt install -y curl liblz4-1 libyaml-0-2 p7zip-full gcc g++ bison bc make git zip flex zipalign libssl-dev python3 gcc-aarch64-linux-gnu cpio tree vim
 
     - name: Download Build Tools
+      continue-on-error: true
       run: |
         cd $GITHUB_WORKSPACE
         pwd
@@ -21,7 +22,7 @@ jobs:
         ../git-repo/repo sync
         cd common
         git checkout --orphan common-android12-5.10-2025-02
-        git rm -rf . || true
+        git rm -rf .
         git pull https://github.com/dopaemon/android_kernel_android_5.10.git main
 
     - uses: actions/checkout@v3
