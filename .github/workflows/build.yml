@@ -20,10 +20,9 @@ jobs:
         mkdir android-kernel && cd android-kernel
         ../git-repo/repo init --depth=1 --u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2025-02
         ../git-repo/repo sync
-        cd common
-        git checkout --orphan common-android12-5.10-2025-02
-        git rm -rf .
-        git pull https://github.com/dopaemon/android_kernel_android_5.10.git main
+        rm -rf .git .github
+        rm -rf common
+        git clone -b main --single-branch --depth=1 https://github.com/dopaemon/android_kernel_android_5.10.git common
 
     - name: Build Kernel
       run: |
