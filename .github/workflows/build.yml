@@ -25,10 +25,6 @@ jobs:
         git rm -rf .
         git pull https://github.com/dopaemon/android_kernel_android_5.10.git main
 
-    - uses: actions/checkout@v3
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-
     - name: Build Kernel
       run: |
         cd $GITHUB_WORKSPACE/android-kernel
@@ -57,3 +53,8 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         path: DoraCore-GKI-5.10-*.zip
+
+    - uses: actions/checkout@v3
+    - name: Setup tmate session
+      if: failure()
+      uses: mxschmitt/action-tmate@v3
