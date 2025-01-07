@@ -21,7 +21,7 @@ jobs:
         ../git-repo/repo sync
         cd common
         git checkout --orphan common-android12-5.10-2025-02
-        git rm -rf .
+        git rm -rf . || true
         git pull https://github.com/dopaemon/android_kernel_android_5.10.git main
 
     - uses: actions/checkout@v3
